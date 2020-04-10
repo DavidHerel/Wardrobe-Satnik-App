@@ -1,6 +1,8 @@
 # Wardrobe-Satnik-App
 Mobile app for managing clothes and generating outfits
 
+![alt text](https://github.com/DavidHerel/Wardrobe-Satnik-App/blob/master/Dokumenty/%C5%A0atn%C3%ADk.png)
+
 ## Popis
 Aplikace, která pomáhá lidem se správou jejich šatníku. Umožňuje spravovat jejich oblečení, boty, doplňky, které vlastní a tvořit z nich každý den outfity, které mohou nosit. Vše na jednom místě.
 ## Proč?
