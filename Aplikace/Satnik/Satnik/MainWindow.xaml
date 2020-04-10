@@ -1,0 +1,99 @@
+﻿<Window x:Class="Satnik.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Satnik"
+        xmlns:local1="clr-namespace:Satnik.ViewModels"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="498.731" Width="499.324" ResizeMode="NoResize">
+    <Window.Resources>
+        <local1:MainViewModel x:Key="ViewModel"/>
+    </Window.Resources>
+
+    <DockPanel DataContext="{StaticResource ViewModel}">
+        <Grid >
+            <Grid.Resources>
+                <BooleanToVisibilityConverter x:Key="boolConverter" />
+            </Grid.Resources>
+
+            <Grid.RowDefinitions >
+                <RowDefinition Height="65*"/>
+                <RowDefinition Height="394*"/>
+            </Grid.RowDefinitions>
+
+            <Border BorderBrush="Black" Background="Pink" BorderThickness="1" HorizontalAlignment="Left" Height="64" VerticalAlignment="Top" Width="495">
+                <Label Content="Můj šatník" FontSize="35" FontWeight="Bold" Margin="151.2,-0.8,149.4,1.2" Foreground="White"/>
+            </Border>
+
+            <StackPanel Grid.Row="1" Margin="0,0.2,387.2,0.4">
+                <StackPanel.Resources>
+                    <Style x:Key="Flag" TargetType="RadioButton">
+                        <Style.Triggers>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter Property="Opacity" Value="0.5"/>
+                            </Trigger>
+                        </Style.Triggers>
+
+                        <Setter Property="BorderThickness" Value="2"/>
+
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="RadioButton">
+                                    <Border BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                Background="Transparent"
+                                CornerRadius="20">
+                                        <Image Source="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </StackPanel.Resources>
+                <ItemsControl Margin="0,0,0.8,0" Height="395">
+                    <RadioButton Content="../Images/ic_home_24px.png" x:Name="toggleMe" Style="{StaticResource Flag}" Height="69"/>
+                    <RadioButton Content="../Images/casual-t-shirt-.png" x:Name="toggleMe2" IsChecked="True" Style="{StaticResource Flag}" Height="69"/>
+
+                </ItemsControl>
+            </StackPanel>
+            <Grid Margin="106,2.6,-0.2,-0.2" Grid.Row="1" Visibility="{Binding ElementName=toggleMe, Path=IsChecked, Converter={StaticResource boolConverter}}">
+
+                <Label Content="Dnešní outfit" HorizontalAlignment="Left" FontSize="25" FontWeight="Bold" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                <Button Content="Další outfit" Command="{Binding DalsiOutfitButton}" FontSize="25" FontWeight="Bold" HorizontalAlignment="Left" Margin="105,331,0,0" VerticalAlignment="Top" Width="187" Foreground="Pink" Height="46"/>
+                <Image Source="{Binding sakoVM}" HorizontalAlignment="Left" Height="119" Margin="58,70,0,0" VerticalAlignment="Top" Width="115"/>
+                <Image Source="{Binding kalhotyVM}" HorizontalAlignment="Left" Height="119" Margin="197,70,0,0" VerticalAlignment="Top" Width="115"/>
+                <Image Source="{Binding trickoVM}" HorizontalAlignment="Left" Height="119" Margin="58,204,0,0" VerticalAlignment="Top" Width="115"/>
+                <Image Source="{Binding botyVM}" HorizontalAlignment="Left" Height="119" Margin="197,204,0,0" VerticalAlignment="Top" Width="115"/>
+            </Grid>
+
+            <Grid Margin="106,2.6,-0.2,-0.2" Grid.Row="1" Visibility="{Binding ElementName=toggleMe2, Path=IsChecked, Converter={StaticResource boolConverter}}">
+                <Label Name="pocetObleceni" Content="{Binding PocetObleceni}" HorizontalAlignment="Left" FontSize="20" FontWeight="Bold" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                <Button Command="{Binding NoveObleceniButton}" Content="Přidat další" FontSize="25" FontWeight="Bold" HorizontalAlignment="Left" Margin="105,331,0,0" VerticalAlignment="Top" Width="187" Foreground="Pink" Height="46"/>
+                <ListBox ItemsSource="{Binding ObleceniCards}" Margin="10,58,10,97" >
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel MaxWidth="400" />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <local:ObleceniCustomControl DruhObleceni="{Binding Druh, Mode=TwoWay}"
+                                                    Barva="{Binding Barva, Mode=TwoWay}"
+                                                    Kategorie="{Binding Kategorie, Mode=TwoWay}"
+                                                    Icon="{Binding Icon, Mode=TwoWay}"
+                                                    RemoveCommand="{Binding DeleteCity}"
+                                                    Width="80" >
+                                </local:ObleceniCustomControl>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+
+        </Grid>
+    </DockPanel>
+
+
+</Window>
