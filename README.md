@@ -1,5 +1,5 @@
 # Wardrobe-Satnik-App
-Mobile app for managing clothes and generating outfits
+Dekstop app for managing clothes and generating outfits
 
 ![alt text](https://github.com/DavidHerel/Wardrobe-Satnik-App/blob/master/Dokumenty/Hlavn%C3%AD%20screen.png)
 ![alt text](https://github.com/DavidHerel/Wardrobe-Satnik-App/blob/master/Dokumenty/%C5%A0atn%C3%ADk.png)
