@@ -23,5 +23,3 @@ Muži, ženy, děti kdokoliv bez omezení. Hlavní cílem je ušetřit čas a ta
 - Možnost odebrat věci z šatníku
 - Možnost přidat informace k jednotlivým kusům oblečení, aby pak k sobě více ladily
 - Možnost mít historii outfitů
-
-CTU 5th semester IUR TP
